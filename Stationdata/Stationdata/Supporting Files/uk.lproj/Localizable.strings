@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  Stationdata
+
+  Created by Beloizerov on 26.06.17.
+  Copyright © 2017 Beloizerov. All rights reserved.
+*/
+
+"Download" = "Завантажити";
+"Update" = "Оновити";
+"Checking for updates" = "Перевірка наявності оновлень";
+"Locations" = "Локації";
+"Mean maximum temperature (degC)" = "Сер. максимальна температура (C)";
+"Mean minimum temperature (degC)" = "Сер. мінімальна температура (C)";
+"Days of air frost (days)" = "Дні морозного повітря (днів)";
+"Total rainfall (mm)" = "Загальна кількість опадів (мм)";
+"Total sunshine duration (hours)" = "Tривалість сонячного світла (год)";
+"Search" = "Пошук";

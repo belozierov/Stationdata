@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Location" representedClassName=".Location" syncable="YES">
+        <attribute name="downloadState_" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="updateDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="url_" attributeType="String" syncable="YES"/>
+        <relationship name="ranges_" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="LocationRanges" syncable="YES"/>
+    </entity>
+    <entity name="LocationRanges" representedClassName=".LocationRanges" syncable="YES">
+        <attribute name="lowerAf" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lowerRain" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lowerSun" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lowerTmax" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lowerTmin" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="upperAf" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="upperRain" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="upperSun" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="upperTmax" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="upperTmin" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="values_" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="LocationValue" syncable="YES"/>
+    </entity>
+    <entity name="LocationValue" representedClassName=".LocationValue" syncable="YES">
+        <attribute name="af" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="month" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="rain" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="sun" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="tmax" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="tmin" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="year_" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Location" positionX="-36" positionY="-210" width="128" height="118"/>
+        <element name="LocationRanges" positionX="178" positionY="-165" width="128" height="210"/>
+        <element name="LocationValue" positionX="369" positionY="-63" width="128" height="148"/>
+    </elements>
+</model>
