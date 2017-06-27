@@ -11,6 +11,8 @@ import CoreData
 
 final class ListViewController: UITableViewController, UISearchBarDelegate, NSFetchedResultsControllerDelegate, ListManagerDelegate {
 
+    private lazy var detailsViewController = DetailsViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Locations".localized
@@ -95,8 +97,8 @@ final class ListViewController: UITableViewController, UISearchBarDelegate, NSFe
         let location = manager.fetchedResultsController.object(at: indexPath)
         switch location.downloadState {
         case .downloaded, .haveUpdate:
-            let controller = DetailsViewController(location: location)
-            navigationController?.pushViewController(controller, animated: true)
+            detailsViewController.location = location
+            navigationController?.pushViewController(detailsViewController, animated: true)
         case .notDownloaded:
             tableView.deselectRow(at: indexPath, animated: true)
             guard let cell = tableView.cellForRow(at: indexPath) as? ListCell else { return }

@@ -54,6 +54,7 @@
 		0E6D5A191EFD4C69004B807F /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		0E6D5A1E1EFD5396004B807F /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		0E6D5A201EFD5667004B807F /* ListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListManager.swift; sourceTree = "<group>"; };
+		0E75C8A51F024D3D00EC5271 /* Stationdata 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Stationdata 2.xcdatamodel"; sourceTree = "<group>"; };
 		0E9711E61EFED0A8009ECBAC /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		0E9711E81EFEED03009ECBAC /* DetailsHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsHeaderCell.swift; sourceTree = "<group>"; };
 		0ECF81261EFDA94900C446A3 /* NSManagedObjectContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContext.swift; sourceTree = "<group>"; };
@@ -465,9 +466,10 @@
 		0E6D5A011EFD3ED7004B807F /* Stationdata.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				0E75C8A51F024D3D00EC5271 /* Stationdata 2.xcdatamodel */,
 				0E6D5A021EFD3ED7004B807F /* Stationdata.xcdatamodel */,
 			);
-			currentVersion = 0E6D5A021EFD3ED7004B807F /* Stationdata.xcdatamodel */;
+			currentVersion = 0E75C8A51F024D3D00EC5271 /* Stationdata 2.xcdatamodel */;
 			path = Stationdata.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

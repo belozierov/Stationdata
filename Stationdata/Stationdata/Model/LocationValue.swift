@@ -22,12 +22,12 @@ final class LocationValue: NSManagedObject {
     @NSManaged private var rain: NSNumber?
     @NSManaged private var sun: NSNumber?
     
-    var year: Double? { return Double(year_) }
-    var maxTemp: Double? { return tmax?.doubleValue }
-    var minTemp: Double? { return tmin?.doubleValue }
-    var airFrost: Double? { return af?.doubleValue }
-    var rainfall: Double? { return rain?.doubleValue }
-    var sunshine: Double? { return sun?.doubleValue }
+    var year: Float? { return Float(year_) }
+    var maxTemp: Float? { return tmax?.floatValue }
+    var minTemp: Float? { return tmin?.floatValue }
+    var airFrost: Float? { return af?.floatValue }
+    var rainfall: Float? { return rain?.floatValue }
+    var sunshine: Float? { return sun?.floatValue }
     
     func label(for level: Int) -> String? {
         switch level {
@@ -38,7 +38,7 @@ final class LocationValue: NSManagedObject {
         }
     }
     
-    convenience init?(values: [Double?], in context: NSManagedObjectContext) {
+    convenience init?(values: [Float?], in context: NSManagedObjectContext) {
         guard values.count == 7 else { return nil }
         self.init(context: context)
         self.year_ = Int16(values[0] ?? 0)
@@ -50,9 +50,9 @@ final class LocationValue: NSManagedObject {
         sun = number(from: values[6])
     }
     
-    private func number(from double: Double?) -> NSNumber? {
-        guard let double = double else { return nil }
-        return NSNumber(value: double)
+    private func number(from float: Float?) -> NSNumber? {
+        guard let float = float else { return nil }
+        return NSNumber(value: float)
     }
     
 }

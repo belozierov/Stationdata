@@ -94,9 +94,9 @@ final class DetailsCell: UICollectionViewCell {
         let linePath = UIBezierPath()
         let chartPath = CGMutablePath()
         let middleLinePoint = CGPoint(x: size.width / 2,
-                                      y: size.height - middle * size.height)
+                                      y: size.height - CGFloat(middle) * size.height)
         if let start = result.start {
-            let leftLinePoint = CGPoint(x: 0, y: size.height - start * size.height)
+            let leftLinePoint = CGPoint(x: 0, y: size.height - CGFloat(start) * size.height)
             linePath.move(to: leftLinePoint)
             linePath.addLine(to: middleLinePoint)
             chartPath.move(to: CGPoint(x: 0, y: chartView.frame.height))
@@ -109,7 +109,7 @@ final class DetailsCell: UICollectionViewCell {
         chartPath.addLine(to: middleLinePoint)
         if let end = result.end {
             let rightLinePoint = CGPoint(x: size.width,
-                                         y: size.height - end * size.height)
+                                         y: size.height - CGFloat(end) * size.height)
             linePath.addLine(to: rightLinePoint)
             chartPath.addLine(to: rightLinePoint)
             chartPath.addLine(to: CGPoint(x: size.width,

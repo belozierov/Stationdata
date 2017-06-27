@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CoreGraphics
 
 final class DetailsManager {
     
@@ -18,7 +17,7 @@ final class DetailsManager {
     }
     
     private(set) var values = [LocationValue]()
-    private var ranges = [Range<Double>?]()
+    private var ranges = [Range<Float>?]()
     
     // MARK: Levels
     
@@ -49,24 +48,24 @@ final class DetailsManager {
     
     struct Result {
         
-        let start: CGFloat?
-        let middle: CGFloat?
-        let end: CGFloat?
+        let start: Float?
+        let middle: Float?
+        let end: Float?
         let label: String?
         
-        typealias Values = (start: Double?, middle: Double?, end: Double?)
+        typealias Values = (start: Float?, middle: Float?, end: Float?)
         
-        fileprivate init?(_ values: Values, range: Range<Double>?, label: String?) {
+        fileprivate init?(_ values: Values, range: Range<Float>?, label: String?) {
             guard let middle = values.middle, let range = range else { return nil }
             let differ = range.upperBound - range.lowerBound
-            func calc(from: Double?, to: Double?, range: Range<Double>) -> CGFloat? {
+            func calc(from: Float?, to: Float?, range: Range<Float>) -> Float? {
                 guard let from = from, let to = to else { return nil }
                 let center = (from + to) / 2
-                return CGFloat((center - range.lowerBound) / differ)
+                return (center - range.lowerBound) / differ
             }
             start = calc(from: values.start, to: values.middle, range: range)
             end = calc(from: values.middle, to: values.end, range: range)
-            self.middle = CGFloat((middle - range.lowerBound) / differ)
+            self.middle = (middle - range.lowerBound) / differ
             self.label = label
         }
         
@@ -128,12 +127,12 @@ final class DetailsManager {
         }
     }
     
-    private func label(for double: Double?) -> String? {
-        guard let double = double else { return nil }
-        return String(format: "%.01f", double)
+    private func label(for float: Float?) -> String? {
+        guard let float = float else { return nil }
+        return String(format: "%.01f", float)
     }
     
-    private func mean(range: Range<Double>) -> Double {
+    private func mean(range: Range<Float>) -> Float {
         return (range.lowerBound + range.upperBound) / 2
     }
     
@@ -141,7 +140,7 @@ final class DetailsManager {
         return IndexPath(item: indexPath.item - 1, section: indexPath.section / 2)
     }
     
-    private func resultValues(from values: [LocationValue?], transform: (LocationValue?) -> Double?) -> Result.Values {
+    private func resultValues(from values: [LocationValue?], transform: (LocationValue?) -> Float?) -> Result.Values {
         return (transform(values[0]), transform(values[1]), transform(values[2]))
     }
     

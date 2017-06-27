@@ -10,9 +10,8 @@ import UIKit
 
 final class DetailsViewController: UICollectionViewController {
     
-    convenience init(location: Location) {
+    convenience init() {
         self.init(collectionViewLayout: DetailsCollectionViewLayout())
-        title = location.name
         installsStandardGestureForInteractiveMovement = false
         
         //CollectionView
@@ -25,9 +24,6 @@ final class DetailsViewController: UICollectionViewController {
         collectionView?.register(DetailsHeaderCell.self, forCellWithReuseIdentifier: "HeaderCell")
         collectionView?.register(DetailsRangeCell.self, forCellWithReuseIdentifier: "RangeCell")
         collectionView?.isPrefetchingEnabled = false
-        
-        //DetailsManager
-        manager.location = location
         
         //GestureRecognizerі
         let pinchRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(pinchRecognizerActivate(_:)))
@@ -47,6 +43,18 @@ final class DetailsViewController: UICollectionViewController {
     // MARK: - DetailsManager
     
     private let manager = DetailsManager()
+    
+    var location: Location? {
+        get {
+            return manager.location
+        }
+        set {
+            guard location != newValue else { return }
+            manager.location = newValue
+            title = newValue?.name
+            reloadData()
+        }
+    }
     
     // MARK: - UICollectionViewDelegate and DataSource
     
@@ -160,7 +168,7 @@ final class DetailsViewController: UICollectionViewController {
         reloadData(scrollTo: year)
     }
     
-    private func year(at x: CGFloat) -> Double? {
+    private func year(at x: CGFloat) -> Float? {
         if let item = collectionView?.indexPathForItem(at: CGPoint(x: x, y: 80))?.item,
             item > 1, item - 1 < manager.values.count {
             return manager.values[item - 1].year
@@ -168,7 +176,7 @@ final class DetailsViewController: UICollectionViewController {
         return nil
     }
     
-    private func reloadData(scrollTo year: Double?) {
+    private func reloadData(scrollTo year: Float? = nil) {
         guard let collectionView = collectionView else { return }
         selectedCell = nil
         (collectionViewLayout as? DetailsCollectionViewLayout)?.reset()

@@ -50,7 +50,7 @@ final class Location: NSManagedObject {
         url_ = url.absoluteString
     }
     
-    func setValues(_ array: [[Double?]]) {
+    func setValues(_ array: [[Float?]]) {
         guard let context = managedObjectContext else { return }
         //self.values.forEach { value in context.delete(value) }
         let values = array.flatMap { value in LocationValue(values: value, in: context) }
@@ -65,9 +65,9 @@ final class Location: NSManagedObject {
         var resultValues = [LocationValue]()
         var tempValues = [LocationValue]()
         var compare: String?
-        var year: Double?
+        var year: Float?
         func addLocationValue() {
-            let values: [Double?] = [
+            let values: [Float?] = [
                 year,
                 nil,
                 calcValue(from: tempValues, mean: true) { $0.maxTemp },
@@ -97,11 +97,11 @@ final class Location: NSManagedObject {
         return LocationRanges(values: resultValues, in: context)
     }
     
-    private func calcValue(from values: [LocationValue], mean: Bool, _ transform: (LocationValue) -> Double?) -> Double? {
-        var temp = (sum: 0.0, count: 0.0)
+    private func calcValue(from values: [LocationValue], mean: Bool, _ transform: (LocationValue) -> Float?) -> Float? {
+        var temp: (sum: Float, count: Float) = (0, 0)
         for value in values {
-            guard let double = transform(value) else { continue }
-            temp.sum += double
+            guard let float = transform(value) else { continue }
+            temp.sum += float
             temp.count += 1
         }
         guard temp.count > 0 else { return nil }

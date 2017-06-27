@@ -22,27 +22,27 @@ final class LocationRanges: NSManagedObject {
     @NSManaged private var upperSun: NSNumber?
     @NSManaged private var values_: NSOrderedSet?
 
-    private(set) var maxTemp: Range<Double>? {
+    private(set) var maxTemp: Range<Float>? {
         get { return range(lower: lowerTmax, upper: upperTmax) }
         set { setRange(newValue, lower: &lowerTmax, upper: &upperTmax) }
     }
     
-    private(set) var minTemp: Range<Double>? {
+    private(set) var minTemp: Range<Float>? {
         get { return range(lower: lowerTmin, upper: upperTmin) }
         set { setRange(newValue, lower: &lowerTmin, upper: &upperTmin) }
     }
     
-    private(set) var airFrost: Range<Double>? {
+    private(set) var airFrost: Range<Float>? {
         get { return range(lower: lowerAf, upper: upperAf) }
         set { setRange(newValue, lower: &lowerAf, upper: &upperAf) }
     }
     
-    private(set) var rainfall: Range<Double>? {
+    private(set) var rainfall: Range<Float>? {
         get { return range(lower: lowerRain, upper: upperRain) }
         set { setRange(newValue, lower: &lowerRain, upper: &upperRain) }
     }
     
-    private(set) var sunshine: Range<Double>? {
+    private(set) var sunshine: Range<Float>? {
         get { return range(lower: lowerSun, upper: upperSun) }
         set { setRange(newValue, lower: &lowerSun, upper: &upperSun) }
     }
@@ -73,19 +73,19 @@ final class LocationRanges: NSManagedObject {
         return Range(uncheckedBounds: (lower: lower, upper: upper))
     }
     
-    private func range(lower: NSNumber?, upper: NSNumber?) -> Range<Double>? {
+    private func range(lower: NSNumber?, upper: NSNumber?) -> Range<Float>? {
         guard let lower = lower, let upper = upper else { return nil }
-        return Range(uncheckedBounds: (lower: lower.doubleValue, upper: upper.doubleValue))
+        return Range(uncheckedBounds: (lower: lower.floatValue, upper: upper.floatValue))
     }
     
-    private func setRange(_ range: Range<Double>?, lower: inout NSNumber?, upper: inout NSNumber?) {
+    private func setRange(_ range: Range<Float>?, lower: inout NSNumber?, upper: inout NSNumber?) {
         lower = number(from: range?.lowerBound)
         upper = number(from: range?.upperBound)
     }
     
-    private func number(from double: Double?) -> NSNumber? {
-        guard let double = double else { return nil }
-        return NSNumber(value: double)
+    private func number(from float: Float?) -> NSNumber? {
+        guard let float = float else { return nil }
+        return NSNumber(value: float)
     }
     
 }

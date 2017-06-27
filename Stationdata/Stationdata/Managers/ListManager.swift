@@ -153,10 +153,10 @@ final class ListManager {
     private func parseLocation(data: Data?, in location: Location) {
         guard let data = data, !data.isEmpty else { return }
         let characters = CharacterSet(charactersIn: " #")
-        func parseValues(from string: String) -> [Double?] {
+        func parseValues(from string: String) -> [Float?] {
             return string.components(separatedBy: characters)
                 .filter { string in !string.isEmpty && string != "Provisional" }
-                .map(Double.init)
+                .map(Float.init)
         }
         let separator = "degC    degC    days      mm   hours"
         guard let values = String(data: data, encoding: .utf8)?
