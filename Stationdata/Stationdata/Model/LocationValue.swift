@@ -29,13 +29,17 @@ final class LocationValue: NSManagedObject {
     var rainfall: Float? { return rain?.floatValue }
     var sunshine: Float? { return sun?.floatValue }
     
+    @NSManaged private var label_: String?
+    
     func label(for level: Int) -> String? {
+        if let label = label_ { return label }
         switch level {
-        case 0: return Calendar.current.shortMonthSymbols[Int(month - 1)] + "\n\(year_)"
-        case 1: return year_.description + "\n"
-        case 2: return "\((year_ / 10))0-\n\(year_ / 10 + 1)0"
-        default: return nil
+        case 0: label_ = Calendar.current.shortMonthSymbols[Int(month - 1)] + "\n\(year_)"
+        case 1: label_ = year_.description + "\n"
+        case 2: label_ = "\((year_ / 10))0-\n\(year_ / 10 + 1)0"
+        default: break
         }
+        return label_
     }
     
     convenience init?(values: [Float?], in context: NSManagedObjectContext) {

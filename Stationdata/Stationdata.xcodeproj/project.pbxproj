@@ -38,6 +38,7 @@
 		0E4EE79B1F0195C100A92C0C /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		0E4EE79D1F0195ED00A92C0C /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0E4EE79F1F01963400A92C0C /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		0E55BB391F0A2A01006BADB9 /* Stationdata 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Stationdata 3.xcdatamodel"; sourceTree = "<group>"; };
 		0E5CF0821EFE72A70046480D /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		0E5CF0851EFE730D0046480D /* DetailsCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsCollectionViewLayout.swift; sourceTree = "<group>"; };
 		0E5CF0871EFE75530046480D /* DetailsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsManager.swift; sourceTree = "<group>"; };
@@ -466,10 +467,11 @@
 		0E6D5A011EFD3ED7004B807F /* Stationdata.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				0E55BB391F0A2A01006BADB9 /* Stationdata 3.xcdatamodel */,
 				0E75C8A51F024D3D00EC5271 /* Stationdata 2.xcdatamodel */,
 				0E6D5A021EFD3ED7004B807F /* Stationdata.xcdatamodel */,
 			);
-			currentVersion = 0E75C8A51F024D3D00EC5271 /* Stationdata 2.xcdatamodel */;
+			currentVersion = 0E55BB391F0A2A01006BADB9 /* Stationdata 3.xcdatamodel */;
 			path = Stationdata.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

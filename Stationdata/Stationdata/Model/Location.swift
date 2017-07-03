@@ -20,9 +20,7 @@ final class Location: NSManagedObject {
     @NSManaged private var downloadState_: Int16
     @NSManaged private var ranges_: NSOrderedSet?
     
-    var url: URL? {
-        return URL(string: url_)
-    }
+    var url: URL? { return URL(string: url_) }
     
     private var ranges: [LocationRanges] {
         get { return ranges_?.array as? [LocationRanges] ?? [] }
@@ -52,7 +50,7 @@ final class Location: NSManagedObject {
     
     func setValues(_ array: [[Float?]]) {
         guard let context = managedObjectContext else { return }
-        //self.values.forEach { value in context.delete(value) }
+        ranges.forEach { value in context.delete(value) }
         let values = array.flatMap { value in LocationValue(values: value, in: context) }
         ranges = (0..<3).flatMap { createRange(for: $0, values: values) }
         updateDate = Date()
@@ -108,12 +106,8 @@ final class Location: NSManagedObject {
         return mean ? temp.sum / temp.count : temp.sum
     }
     
+    enum Key: String {
+        case name = "name"
+    }
+    
 }
-
-
-
-
-
-
-
-

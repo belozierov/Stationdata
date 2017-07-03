@@ -22,6 +22,7 @@
     </entity>
     <entity name="LocationValue" representedClassName=".LocationValue" syncable="YES">
         <attribute name="af" optional="YES" attributeType="Float" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="label_" optional="YES" transient="YES" syncable="YES"/>
         <attribute name="month" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="rain" optional="YES" attributeType="Float" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="sun" optional="YES" attributeType="Float" usesScalarValueType="YES" syncable="YES"/>
@@ -30,8 +31,8 @@
         <attribute name="year_" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Location" positionX="-36" positionY="-210" width="128" height="118"/>
+        <element name="Location" positionX="-36" positionY="-210" width="128" height="120"/>
         <element name="LocationRanges" positionX="178" positionY="-165" width="128" height="210"/>
-        <element name="LocationValue" positionX="369" positionY="-63" width="128" height="150"/>
+        <element name="LocationValue" positionX="369" positionY="-63" width="128" height="165"/>
     </elements>
 </model>

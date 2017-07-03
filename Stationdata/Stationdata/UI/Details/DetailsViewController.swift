@@ -177,12 +177,15 @@ final class DetailsViewController: UICollectionViewController {
     }
     
     private func reloadData(scrollTo year: Float? = nil) {
-        guard let collectionView = collectionView else { return }
+        guard let collectionView = collectionView,
+            let layout = collectionViewLayout as? DetailsCollectionViewLayout
+            else { return }
         selectedCell = nil
-        (collectionViewLayout as? DetailsCollectionViewLayout)?.reset()
+        layout.reset()
         collectionView.reloadData()
-        guard let year = year else { return }
+        layout.prepare()
         collectionView.layoutIfNeeded()
+        guard let year = year else { return }
         if let index = manager.values.index(where: { $0.year ?? 0 >= year }) {
             let x = CGFloat(abs(index.distance(to: manager.values.startIndex)) * 50 + 5)
             let maxX = collectionView.contentSize.width - UIScreen.main.bounds.width

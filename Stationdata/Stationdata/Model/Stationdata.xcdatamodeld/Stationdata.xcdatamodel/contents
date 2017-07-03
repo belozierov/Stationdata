@@ -8,25 +8,25 @@
         <relationship name="ranges_" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="LocationRanges" syncable="YES"/>
     </entity>
     <entity name="LocationRanges" representedClassName=".LocationRanges" syncable="YES">
-        <attribute name="lowerAf" optional="YES" attributeType="Float" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="lowerRain" optional="YES" attributeType="Float" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="lowerSun" optional="YES" attributeType="Float" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="lowerTmax" optional="YES" attributeType="Float" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="lowerTmin" optional="YES" attributeType="Float" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="upperAf" optional="YES" attributeType="Float" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="upperRain" optional="YES" attributeType="Float" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="upperSun" optional="YES" attributeType="Float" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="upperTmax" optional="YES" attributeType="Float" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="upperTmin" optional="YES" attributeType="Float" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lowerAf" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lowerRain" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lowerSun" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lowerTmax" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lowerTmin" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="upperAf" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="upperRain" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="upperSun" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="upperTmax" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="upperTmin" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="values_" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="LocationValue" syncable="YES"/>
     </entity>
     <entity name="LocationValue" representedClassName=".LocationValue" syncable="YES">
-        <attribute name="af" optional="YES" attributeType="Float" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="af" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="month" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="rain" optional="YES" attributeType="Float" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="sun" optional="YES" attributeType="Float" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="tmax" optional="YES" attributeType="Float" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="tmin" optional="YES" attributeType="Float" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="rain" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="sun" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="tmax" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="tmin" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="year_" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>

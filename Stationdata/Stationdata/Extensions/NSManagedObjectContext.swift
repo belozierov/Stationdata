@@ -10,19 +10,11 @@ import CoreData
 
 extension NSManagedObjectContext {
     
-    func saveToPersistentStore(async: Bool = false) {
-        var context: NSManagedObjectContext? = self
-        func save() {
-            while context != nil {
-                guard context?.hasChanges == true else { return }
-                do { try context?.save() } catch {}
-                context = context?.parent
-            }
-        }
-        if async {
-            context?.perform { save() }
-        } else {
-            context?.performAndWait { save() }
+    func saveToPersistentStore() {
+        var tempContext: NSManagedObjectContext? = self
+        while let context = tempContext, context.hasChanges {
+            do { try context.save() } catch {}
+            tempContext = context.parent
         }
     }
     

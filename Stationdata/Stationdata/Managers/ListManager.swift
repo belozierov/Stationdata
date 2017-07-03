@@ -71,11 +71,11 @@ final class ListManager {
                 else { continue }
             finded.remove(at: index)
         }
-        CoreDataStack.context.perform {
+        CoreDataStack.parseContext.perform {
             for (name, url) in finded {
-                _ = Location(name: name, url: url, in: CoreDataStack.context)
+                _ = Location(name: name, url: url, in: CoreDataStack.parseContext)
             }
-            CoreDataStack.context.saveToPersistentStore(async: true)
+            CoreDataStack.parseContext.saveToPersistentStore()
             DispatchQueue.main.async { [unowned self] in self.delegate?.listUpdated() }
         }
     }
@@ -109,9 +109,9 @@ final class ListManager {
         guard let updateDate = location.updateDate,
             let date = getDate(from: response as? HTTPURLResponse), updateDate < date
             else { return }
-        CoreDataStack.context.perform {
+        CoreDataStack.parseContext.perform {
             location.downloadState = .haveUpdate
-            CoreDataStack.context.saveToPersistentStore(async: true)
+            CoreDataStack.parseContext.saveToPersistentStore()
         }
     }
     
@@ -164,9 +164,15 @@ final class ListManager {
             .components(separatedBy: CharacterSet.newlines)
             .map(parseValues)
             else { return }
-        CoreDataStack.context.perform {
-            location.setValues(values)
-            CoreDataStack.context.saveToPersistentStore(async: true)
+        deleteCache()
+        let context = CoreDataStack.parseContext
+        context.perform {
+            do {
+                guard let location = try context.existingObject(with: location.objectID) as? Location
+                    else { return }
+                location.setValues(values)
+                context.saveToPersistentStore()
+            } catch {}
         }
     }
     
@@ -177,7 +183,7 @@ final class ListManager {
         fetchRequest.returnsObjectsAsFaults = false
         fetchRequest.fetchBatchSize = 20
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.context, sectionNameKeyPath: nil, cacheName: "ListManager")
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.viewContext, sectionNameKeyPath: nil, cacheName: "ListManager")
         do { try fetchedResultsController.performFetch() } catch {}
         if fetchedResultsController.fetchedObjects?.isEmpty != false {
             self.updateLocationListFromServer()
@@ -186,15 +192,20 @@ final class ListManager {
     }()
     
     func refetchResults(name: String?) {
-        NSFetchedResultsController<NSFetchRequestResult>.deleteCache(withName: fetchedResultsController.cacheName)
+        deleteCache()
         if let name = name, !name.isEmpty {
             fetchedResultsController.fetchRequest.predicate
-                = NSPredicate(format: "name BEGINSWITH[cd] %@", name)
+                = NSPredicate(format: "%K BEGINSWITH[n] %@", Location.Key.name.rawValue, name)
         } else {
             fetchedResultsController.fetchRequest.predicate = nil
         }
         do { try fetchedResultsController.performFetch() } catch {}
         delegate?.dataDidReload()
+    }
+    
+    private func deleteCache() {
+        let name = fetchedResultsController.cacheName
+        NSFetchedResultsController<NSFetchRequestResult>.deleteCache(withName: name)
     }
     
 }
