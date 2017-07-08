@@ -163,17 +163,12 @@ final class DetailsViewController: UICollectionViewController {
     }
     
     private func level(up: Bool, recognizer: UIGestureRecognizer) {
-        let year = self.year(at: recognizer.location(in: collectionView).x)
+        let x = recognizer.location(in: collectionView).x
+        guard let item = collectionView?.indexPathForItem(at: CGPoint(x: x, y: 80))?.item,
+            item > 1, item - 1 < manager.values.count else { return }
+        let year = manager.values[item - 1].year
         up ? manager.levelUp() : manager.levelDown()
         reloadData(scrollTo: year)
-    }
-    
-    private func year(at x: CGFloat) -> Float? {
-        if let item = collectionView?.indexPathForItem(at: CGPoint(x: x, y: 80))?.item,
-            item > 1, item - 1 < manager.values.count {
-            return manager.values[item - 1].year
-        }
-        return nil
     }
     
     private func reloadData(scrollTo year: Float? = nil) {
